@@ -13,6 +13,80 @@ struct Produkt {
 struct Produkt produkty[MAX_PRODUKTU];
 int pocet = 0;
 
+void vypis_produkty() {
+    printf("\n=== SEZNAM PRODUKTU ===\n");
+
+    if (pocet == 0) {
+        printf("Sklad je prazdny!\n");
+        return;
+    }
+
+    printf("\nIndex | Nazev                | Cena      | Pocet kusu\n");
+    printf("------+----------------------+-----------+-----------\n");
+
+    for (int i = 0; i < pocet; i++) {
+        printf("%-5d | %-20s | %9.2f | %9d\n",
+               i + 1,
+               produkty[i].nazev,
+               produkty[i].cena,
+               produkty[i].pocet_kusu);
+    }
+    printf("\n");
+}
+
+void vyhledej_nazev() {
+    char hledany[MAX_NAZEV];
+    int nalezeno = 0;
+
+    printf("\nZadej nazev produktu: ");
+    scanf("%s", hledany);
+
+    for (int i = 0; i < pocet; i++) {
+        if (strcmp(produkty[i].nazev, hledany) == 0) {
+            printf("\nNalezeno na indexu %d\n", i + 1);
+            printf("Nazev: %s\n", produkty[i].nazev);
+            printf("Cena: %.2f Kc\n", produkty[i].cena);
+            printf("Pocet kusu: %d ks\n", produkty[i].pocet_kusu);
+            nalezeno = 1;
+        }
+    }
+
+    if (!nalezeno) {
+        printf("\nProdukt '%s' nebyl nalezen.\n", hledany);
+    }
+}
+
+void vyhledej_cenu() {
+    float od, do_ceny;
+    int nalezeno = 0;
+
+    printf("\nZadej minimalni cenu: ");
+    scanf("%f", &od);
+    printf("Zadej maximalni cenu: ");
+    scanf("%f", &do_ceny);
+
+    printf("\nIndex | Nazev                | Cena      | Pocet kusu\n");
+    printf("------+----------------------+-----------+-----------\n");
+
+    for (int i = 0; i < pocet; i++) {
+        if (produkty[i].cena >= od && produkty[i].cena <= do_ceny) {
+            printf("%-5d | %-20s | %9.2f | %9d\n",
+                   i + 1,
+                   produkty[i].nazev,
+                   produkty[i].cena,
+                   produkty[i].pocet_kusu);
+            nalezeno = 1;
+        }
+    }
+
+    if (!nalezeno) {
+        printf("Zadny produkt v tomto cenovem rozmezi.\n");
+    }
+    printf("\n");
+}
+
+
+
 void menu() {
     printf("\n=== SKLADOVE HOSPODARSTVI ===\n");
     printf("1 - Vypis vsech produktu\n");
