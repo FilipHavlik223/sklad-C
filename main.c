@@ -107,7 +107,60 @@ void zobraz_detail() {
     printf("\n");
 }
 
+void pridej_produkt() {
+    if (pocet >= MAX_PRODUKTU) {
+        printf("Sklad je plny!\n");
+        return;
+    }
 
+    printf("\n=== PRIDANI PRODUKTU ===\n");
+    printf("Nazev: ");
+    scanf("%s", produkty[pocet].nazev);
+
+    printf("Cena: ");
+    scanf("%f", &produkty[pocet].cena);
+
+    printf("Pocet kusu: ");
+    scanf("%d", &produkty[pocet].pocet_kusu);
+
+    pocet++;
+    printf("Produkt pridan.\n");
+}
+
+void uprav_produkt() {
+    int index, volba;
+
+    printf("\nZadej index produktu k uprave: ");
+    scanf("%d", &index);
+    index--;
+
+    if (index < 0 || index >= pocet) {
+        printf("Neplatny index!\n");
+        return;
+    }
+
+    printf("\nUpravujes: %s\n", produkty[index].nazev);
+    printf("1 - Nazev\n2 - Cena\n3 - Pocet kusu\n4 - Vse\n");
+    printf("Vyber volbu: ");
+    scanf("%d", &volba);
+
+    if (volba == 1 || volba == 4) {
+        printf("Novy nazev: ");
+        scanf("%s", produkty[index].nazev);
+    }
+
+    if (volba == 2 || volba == 4) {
+        printf("Nova cena: ");
+        scanf("%f", &produkty[index].cena);
+    }
+
+    if (volba == 3 || volba == 4) {
+        printf("Novy pocet kusu: ");
+        scanf("%d", &produkty[index].pocet_kusu);
+    }
+
+    printf("Produkt upraven.\n");
+}
 
 void menu() {
     printf("\n=== SKLADOVE HOSPODARSTVI ===\n");
