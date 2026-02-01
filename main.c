@@ -163,6 +163,12 @@ void uprav_produkt() {
 }
 
 void odeber_produkt() {
+
+    if (pocet == 0) {
+        printf("Sklad je prazdny, neni co odstranit.\n");
+        return;
+    }
+
     int index;
     char odpoved;
 
@@ -203,7 +209,6 @@ void menu() {
 }
 
 int main(void) {
-
     strcpy(produkty[0].nazev, "Notebook");
     produkty[0].cena = 15999.50;
     produkty[0].pocet_kusu = 5;
@@ -230,13 +235,20 @@ int main(void) {
         scanf(" %c", &volba);
 
         switch (volba) {
-            case '1': vypis_produkty(); break;
-            case '2': vyhledej_nazev(); break;
-            case '3': vyhledej_cenu(); break;
-            case '4': zobraz_detail(); break;
-            case '5': pridej_produkt(); break;
-            case '6': uprav_produkt(); break;
-            case '7': odeber_produkt(); break;
+            case '1': vypis_produkty();
+                break;
+            case '2': vyhledej_nazev();
+                break;
+            case '3': vyhledej_cenu();
+                break;
+            case '4': zobraz_detail();
+                break;
+            case '5': pridej_produkt();
+                break;
+            case '6': uprav_produkt();
+                break;
+            case '7': odeber_produkt();
+                break;
             case 'x':
             case 'X':
                 printf("\nDekuji za pouziti. Nashledanou!\n");
