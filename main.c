@@ -162,6 +162,33 @@ void uprav_produkt() {
     printf("Produkt upraven.\n");
 }
 
+void odeber_produkt() {
+    int index;
+    char odpoved;
+
+    printf("\nZadej index produktu k odstraneni: ");
+    scanf("%d", &index);
+    index--;
+
+    if (index < 0 || index >= pocet) {
+        printf("Neplatny index!\n");
+        return;
+    }
+
+    printf("Opravdu odstranit '%s'? (a/n): ", produkty[index].nazev);
+    scanf(" %c", &odpoved);
+
+    if (odpoved == 'a' || odpoved == 'A') {
+        for (int i = index; i < pocet - 1; i++) {
+            produkty[i] = produkty[i + 1];
+        }
+        pocet--;
+        printf("Produkt odstranen.\n");
+    } else {
+        printf("Odstraneni zruseno.\n");
+    }
+}
+
 void menu() {
     printf("\n=== SKLADOVE HOSPODARSTVI ===\n");
     printf("1 - Vypis vsech produktu\n");
