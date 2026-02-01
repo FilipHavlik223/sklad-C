@@ -85,6 +85,28 @@ void vyhledej_cenu() {
     printf("\n");
 }
 
+void zobraz_detail() {
+    int index;
+
+    printf("\nZadej index produktu: ");
+    scanf("%d", &index);
+    index--;
+
+    if (index < 0 || index >= pocet) {
+        printf("Neplatny index!\n");
+        return;
+    }
+
+    printf("\n=== DETAIL PRODUKTU ===\n");
+    printf("Index: %d\n", index + 1);
+    printf("Nazev: %s\n", produkty[index].nazev);
+    printf("Cena: %.2f Kc\n", produkty[index].cena);
+    printf("Pocet kusu: %d ks\n", produkty[index].pocet_kusu);
+    printf("Celkova hodnota: %.2f Kc\n",
+           produkty[index].cena * produkty[index].pocet_kusu);
+    printf("\n");
+}
+
 
 
 void menu() {
